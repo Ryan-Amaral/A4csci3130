@@ -31,11 +31,12 @@ public class CreateBusinessActivity extends Activity {
         String busNum= appState.firebaseReference.push().getKey();
         String name = nameField.getText().toString();
         String pBus = primaryBusinessField.getText().toString();
-        Business person = new Business(busNum, name, email);
+        String addr = addressField.getText().toString();
+        String prOrTr = provinceOrTerritoryField.getText().toString();
+        Business business = new Business(busNum, name, pBus,addr,prOrTr);
 
-        appState.firebaseReference.child(busNum).setValue(person);
+        appState.firebaseReference.child(busNum).setValue(business);
 
         finish();
-
     }
 }

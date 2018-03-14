@@ -13,11 +13,51 @@ import java.util.Map;
  */
 public class Business implements Serializable {
 
-    public String businessNumber;
-    public String name;
-    public String primaryBusiness;
-    public String address;
-    public String provinceOrTerritory;
+    private String businessNumber;
+    private String name;
+    private String primaryBusiness;
+    private String address;
+    private String provinceOrTerritory;
+
+    public String getBusinessNumber() {
+        return businessNumber;
+    }
+
+    public void setBusinessNumber(String businessNumber) {
+        this.businessNumber = businessNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrimaryBusiness() {
+        return primaryBusiness;
+    }
+
+    public void setPrimaryBusiness(String primaryBusiness) {
+        this.primaryBusiness = primaryBusiness;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getProvinceOrTerritory() {
+        return provinceOrTerritory;
+    }
+
+    public void setProvinceOrTerritory(String provinceOrTerritory) {
+        this.provinceOrTerritory = provinceOrTerritory;
+    }
 
     /**
      * Default constructor required for calls to DataSnapshot.getValue.
