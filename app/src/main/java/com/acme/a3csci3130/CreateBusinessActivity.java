@@ -9,29 +9,31 @@ import android.widget.EditText;
 public class CreateBusinessActivity extends Activity {
 
     private Button submitButton;
-    private EditText nameField, emailField;
+    private EditText nameField, primaryBusinessField, addressField, provinceOrTerritoryField;
     private MyApplicationData appState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_contact_acitivity);
+        setContentView(R.layout.activity_create_business);
         //Get the app wide shared variables
-        appState = ((MyApplicationData) getApplicationContext());
+        appState = ((MyApplicationData)getApplicationContext());
 
-        submitButton = (Button) findViewById(R.id.submitButton);
-        nameField = (EditText) findViewById(R.id.name);
-        emailField = (EditText) findViewById(R.id.email);
+        submitButton = (Button)findViewById(R.id.submitButton);
+        nameField = (EditText)findViewById(R.id.name);
+        primaryBusinessField = (EditText)findViewById(R.id.edtTxtPBus);
+        addressField = (EditText)findViewById(R.id.edtTxtAddr);
+        provinceOrTerritoryField = (EditText)findViewById(R.id.edtTxtPrOrTr);
     }
 
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
-        String personID = appState.firebaseReference.push().getKey();
+        String busNum= appState.firebaseReference.push().getKey();
         String name = nameField.getText().toString();
-        String email = emailField.getText().toString();
-        Business person = new Business(personID, name, email);
+        String pBus = primaryBusinessField.getText().toString();
+        Business person = new Business(busNum, name, email);
 
-        appState.firebaseReference.child(personID).setValue(person);
+        appState.firebaseReference.child(busNum).setValue(person);
 
         finish();
 
