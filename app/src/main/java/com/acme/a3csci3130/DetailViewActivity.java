@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class DetailViewActivity extends Activity {
 
-    private EditText nameField, primaryBusinessField, addressField, provinceOrTerritoryField;
+    private EditText nameField, primaryBusinessField,
+            addressField, provinceOrTerritoryField;
+    private TextView businessNumField;
     Business receivedBusinessInfo;
 
     @Override
@@ -16,12 +19,18 @@ public class DetailViewActivity extends Activity {
         setContentView(R.layout.activity_detail_view);
         receivedBusinessInfo = (Business)getIntent().getSerializableExtra("Business");
 
-        nameField = (EditText) findViewById(R.id.name);
-        emailField = (EditText) findViewById(R.id.email);
+        businessNumField = (TextView) findViewById(R.id.txtBNum);
+        nameField = (EditText)findViewById(R.id.edtTxtName);
+        primaryBusinessField = (EditText)findViewById(R.id.edtTxtPBus);
+        addressField = (EditText)findViewById(R.id.edtTxtAddr);
+        provinceOrTerritoryField = (EditText)findViewById(R.id.edtTxtPrOrTr);
 
         if(receivedBusinessInfo != null){
-            nameField.setText(receivedBusinessInfo.name);
-            emailField.setText(receivedBusinessInfo.name);
+            businessNumField.setText("business number: " +receivedBusinessInfo.getBusinessNumber());
+            nameField.setText(receivedBusinessInfo.getName());
+            primaryBusinessField.setText(receivedBusinessInfo.getPrimaryBusiness());
+            addressField.setText(receivedBusinessInfo.getAddress());
+            provinceOrTerritoryField.setText(receivedBusinessInfo.getProvinceOrTerritory());
         }
     }
 

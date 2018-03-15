@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import java.util.Random;
 
 public class CreateBusinessActivity extends Activity {
 
@@ -20,10 +21,23 @@ public class CreateBusinessActivity extends Activity {
         appState = ((MyApplicationData)getApplicationContext());
 
         submitButton = (Button)findViewById(R.id.submitButton);
-        nameField = (EditText)findViewById(R.id.name);
+        nameField = (EditText)findViewById(R.id.edtTxtName);
         primaryBusinessField = (EditText)findViewById(R.id.edtTxtPBus);
         addressField = (EditText)findViewById(R.id.edtTxtAddr);
         provinceOrTerritoryField = (EditText)findViewById(R.id.edtTxtPrOrTr);
+    }
+
+    /**
+     * Generates a random 9 digit number for business num.
+     * @return
+     */
+    private String getBusNum(){
+        String num = "";
+        Random rand = new Random();
+        for(int i = 0; i < 9; i++){
+            num += ((Integer)rand.nextInt(10)).toString();
+        }
+        return num;
     }
 
     /**
@@ -32,7 +46,7 @@ public class CreateBusinessActivity extends Activity {
      */
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
-        String busNum= appState.firebaseReference.push().getKey();
+        String busNum= getBusNum();
         String name = nameField.getText().toString();
         String pBus = primaryBusinessField.getText().toString();
         String addr = addressField.getText().toString();
