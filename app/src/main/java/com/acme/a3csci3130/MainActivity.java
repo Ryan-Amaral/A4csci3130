@@ -52,12 +52,20 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Create a new business.
+     * @param v
+     */
     public void createBusinessButton(View v)
     {
         Intent intent=new Intent(this, CreateBusinessActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * View details in new activity of business.
+     * @param business
+     */
     private void showDetailView(Business business)
     {
         Intent intent = new Intent(this, DetailViewActivity.class);

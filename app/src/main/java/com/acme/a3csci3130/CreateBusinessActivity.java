@@ -26,6 +26,10 @@ public class CreateBusinessActivity extends Activity {
         provinceOrTerritoryField = (EditText)findViewById(R.id.edtTxtPrOrTr);
     }
 
+    /**
+     * Send data off to firebase to create business in DB.
+     * @param v
+     */
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
         String busNum= appState.firebaseReference.push().getKey();
