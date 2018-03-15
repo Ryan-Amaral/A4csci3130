@@ -28,6 +28,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.endsWith;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.EasyMock2Matchers.equalTo;
 import static org.hamcrest.Matchers.hasToString;
@@ -86,13 +87,15 @@ public class ExampleInstrumentedTest {
         // view data
         onData(anything()).inAdapterView(allOf(withId(R.id.listView))).atPosition(0)
                 .perform(click());
-        closeSoftKeyboard();
 
         // type name
         onView(withId(R.id.edtTxtName))
                 .perform(replaceText("Test Company 2"));
 
-        // create it
+
+        closeSoftKeyboard();
+
+        // update it
         onView(withId(R.id.updateButton))
                 .perform(click());
 
@@ -107,18 +110,13 @@ public class ExampleInstrumentedTest {
         // view data
         onData(anything()).inAdapterView(allOf(withId(R.id.listView))).atPosition(0)
                 .perform(click());
-        closeSoftKeyboard();
 
-        // type name
-        onView(withId(R.id.edtTxtName))
-                .perform(replaceText("Test Company 2"));
-
-        // create it
-        onView(withId(R.id.updateButton))
+        // delete it
+        onView(withId(R.id.deleteButton))
                 .perform(click());
 
         Thread.sleep(1000);
 
-        onData(allOf(endsWith("Test Company 2")));
+        not(onData(allOf(endsWith("Test Company 2"))));
     }
 }
